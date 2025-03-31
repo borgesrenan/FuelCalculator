@@ -29,7 +29,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12dp"
-            android:hint="Ex: R$ 1,70" />
+            android:hint="Ex: 5KM/L" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consumo do Carro"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <TextView
+        android:id="@+id/txt_info2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passo 2 de 3"
+        tools:layout_editor_absoluteX="12dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
