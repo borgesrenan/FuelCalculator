@@ -3,6 +3,7 @@ package com.example.fuelcalculator
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,6 +14,23 @@ class ResulActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_resul)
+
+        //Recebendo todos os valores de cada activity
+        val fuelValue = intent.getFloatExtra("FUEL_VALUE", 0f)
+        val consump = intent.getFloatExtra("CONSUMPTION_VALUE",0f)
+        val distanceText = intent.getFloatExtra("DISTANCE_VALUE", 0f)
+        val formattedCost = intent.getFloatExtra("TOTAL_VALUE", 0f)
+
+        //Passar os valores para cada txt que eu tiver
+        val txtResult = findViewById<TextView>(R.id.txt_result)
+        val txtFuel = findViewById<TextView>(R.id.txt_price_review)
+        val txtConsump = findViewById<TextView>(R.id.txt_consumo_review)
+        val txtDistance = findViewById<TextView>(R.id.txt_km_review)
+
+        txtResult.text = "€${String.format("%.2f", formattedCost)}"
+        txtFuel.text = "€${String.format("%.2f", fuelValue)}"
+        txtConsump.text = "${String.format("%.2f", consump)} KM/L"
+        txtDistance.text = "${String.format("%.2f", distanceText)} KM"
 
         val btnNew = findViewById<Button>(R.id.btn_new)
         btnNew.setOnClickListener {

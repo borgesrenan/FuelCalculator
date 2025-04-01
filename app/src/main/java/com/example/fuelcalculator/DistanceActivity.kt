@@ -15,14 +15,32 @@ class DistanceActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_distance)
 
+        val fuelValue = intent.getFloatExtra("FUEL_VALUE", 0f)
+        val consump = intent.getFloatExtra("CONSUMPTION_VALUE",0f)
+
         val edtDistance = findViewById<TextInputEditText>(R.id.edt_distance)
         val btnCalc = findViewById<Button>(R.id.btn_calc)
 
         btnCalc.setOnClickListener {
-            val intent = Intent(this, ResulActivity::class.java)
-            startActivity(intent)
+            val distanceText: Float = edtDistance.text.toString().toFloat()
 
-            println("Distance: " + edtDistance)
+
+            // Calcula o custo total
+            val totalCost = (distanceText / consump) * fuelValue
+
+
+            println("Fuel => " + fuelValue)
+            println("Consump => " + consump)
+            println("Distance => " + distanceText)
+            println("Result => " + totalCost)
+
+            // Envia os dados para a tela de resultado
+            val intent = Intent(this, ResulActivity::class.java)
+            intent.putExtra("DISTANCE_VALUE", distanceText)
+            intent.putExtra("CONSUMPTION_VALUE", consump)
+            intent.putExtra("FUEL_VALUE", fuelValue)
+            intent.putExtra("TOTAL_VALUE", totalCost)
+            startActivity(intent)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
