@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 
 class ConsumptionActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class ConsumptionActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_consumption)
 
+        //Here I got fuel value from previous activity
         val fuelValue = intent.getFloatExtra("FUEL_VALUE", 0f)
 
         val edtConsump = findViewById<TextInputEditText>(R.id.edt_consump)
@@ -22,11 +24,18 @@ class ConsumptionActivity : AppCompatActivity() {
 
         btnNext.setOnClickListener {
 
-            val consump: Float = edtConsump.text.toString().toFloat()
-            println("Consumption: " + consump)
-            println("Fuel: " + fuelValue)
+            //Checking if its null, field is required
+            val consumpText = edtConsump.text?.toString() ?: ""
 
+            if (consumpText.isBlank()) {
+                Snackbar.make(edtConsump, "This field is required.", Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            val consump: Float = edtConsump.text.toString().toFloat()
             val intent = Intent(this, DistanceActivity::class.java)
+
+            //Sending values from this activity and from fuel activity to Distance Activity
             intent.putExtra("CONSUMPTION_VALUE", consump)
             intent.putExtra("FUEL_VALUE", fuelValue)
             startActivity(intent)

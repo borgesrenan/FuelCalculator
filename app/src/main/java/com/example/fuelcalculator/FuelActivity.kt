@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 
 class FuelActivity : AppCompatActivity() {
@@ -20,8 +21,16 @@ class FuelActivity : AppCompatActivity() {
 
         btnNext.setOnClickListener {
 
+            //If its null, field is required
+            val fuelText = edtFuel.text?.toString() ?: ""
+
+            if (fuelText.isBlank()) {
+                Snackbar.make(edtFuel, "This field is required.", Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             val fuel: Float = edtFuel.text.toString().toFloat()
-            println("Fuel: " + fuel)
+
             val intent = Intent(this, ConsumptionActivity::class.java)
             intent.putExtra("FUEL_VALUE", fuel)
             startActivity(intent)

@@ -15,13 +15,11 @@ class ResulActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_resul)
 
-        //Recebendo todos os valores de cada activity
         val fuelValue = intent.getFloatExtra("FUEL_VALUE", 0f)
         val consump = intent.getFloatExtra("CONSUMPTION_VALUE",0f)
         val distanceText = intent.getFloatExtra("DISTANCE_VALUE", 0f)
         val formattedCost = intent.getFloatExtra("TOTAL_VALUE", 0f)
 
-        //Passar os valores para cada txt que eu tiver
         val txtResult = findViewById<TextView>(R.id.txt_result)
         val txtFuel = findViewById<TextView>(R.id.txt_price_review)
         val txtConsump = findViewById<TextView>(R.id.txt_consumo_review)

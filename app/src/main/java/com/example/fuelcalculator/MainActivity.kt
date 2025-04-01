@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         val btnStart = findViewById<Button>(R.id.btn_start)
 
         btnStart.setOnClickListener {
+
+            //Intent to navigate to next page, with no data
             val intent = Intent(this, FuelActivity::class.java)
             startActivity(intent)
         }
