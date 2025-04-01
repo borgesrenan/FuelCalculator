@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ResulActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,14 +36,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Título da revisão dos dados -->
     <TextView
         android:id="@+id/txt_review_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Your Trip Summary"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/card_area"
@@ -65,8 +65,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_new">
 
-
-        <!-- Preço -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
