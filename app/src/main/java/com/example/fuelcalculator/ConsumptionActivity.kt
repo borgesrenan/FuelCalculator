@@ -15,13 +15,20 @@ class ConsumptionActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_consumption)
 
+        val fuelValue = intent.getFloatExtra("FUEL_VALUE", 0f)
+
         val edtConsump = findViewById<TextInputEditText>(R.id.edt_consump)
         val btnNext = findViewById<Button>(R.id.btn_next)
 
         btnNext.setOnClickListener {
-            val calc = edtConsump.text
-            println("Consumption: " + calc)
+
+            val consump: Float = edtConsump.text.toString().toFloat()
+            println("Consumption: " + consump)
+            println("Fuel: " + fuelValue)
+
             val intent = Intent(this, DistanceActivity::class.java)
+            intent.putExtra("CONSUMPTION_VALUE", consump)
+            intent.putExtra("FUEL_VALUE", fuelValue)
             startActivity(intent)
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

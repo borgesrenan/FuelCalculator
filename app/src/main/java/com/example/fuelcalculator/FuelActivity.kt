@@ -20,9 +20,10 @@ class FuelActivity : AppCompatActivity() {
 
         btnNext.setOnClickListener {
 
-            val fuel = edtFuel.text
-            println("Renan " + fuel)
+            val fuel: Float = edtFuel.text.toString().toFloat()
+            println("Fuel: " + fuel)
             val intent = Intent(this, ConsumptionActivity::class.java)
+            intent.putExtra("FUEL_VALUE", fuel)
             startActivity(intent)
         }
 
